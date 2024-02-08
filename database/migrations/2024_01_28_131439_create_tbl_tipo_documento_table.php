@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_tipo_documento', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_tipo_dcmnt');
+            $table->string('tipo', 100);
+            $table->string('descripcion', 100);
             $table->timestamps();
+            $table->index(['id_tipo_documento']);
         });
     }
 
