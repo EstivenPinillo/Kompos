@@ -15,7 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id_perfil');
             $table->unsignedBigInteger('fk_estado');
             $table->foreign('fk_estado')->references('id_estado')->on('tbl_estado');
+            $table->string('perfil', 100);
+            $table->string('descripcion', 100);
+            $table->string('permisos', 600);
             $table->timestamps();
+            $table->index(['id_perfil', 'fk_estado']);
         });
     }
 
