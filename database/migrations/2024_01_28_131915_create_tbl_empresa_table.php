@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_empresa', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_empresa');
+            $table->unsignedBigInteger('fk_estado');
+            $table->foreign('fk_estado')->references('id_estado')->on('tbl_estado');
+            $table->string('nit',300);
+            $table->string('razon_social',300);
             $table->timestamps();
+            $tbale->index(['id_empresa','fk_estado']);
         });
     }
 
