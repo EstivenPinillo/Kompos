@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_reingreso', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrement('id_reingreso');
+            $table->unsignedBigInteger('fk_ueu');
+            $table->foreign('fk_ueu')->references('id_ueu')->on('tbl_usuario_equipo_ubicacion');
+            $table->unsignedBigInteger('fk_usuario');
+            $table->foreign('fk_usuario')->references('id_usuario')->on('tbl_usuario');
+            $table->string('observacion', 300);
             $table->timestamps();
+            $table->index(['id_reingreso','fk_ueu','fk_usuario']);
         });
     }
 
